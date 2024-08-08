@@ -48,7 +48,11 @@ COPY docker/rootfs /
 
 # Remove frontend service not required for prod, dev nginx config as well
 RUN rm -rf /etc/s6-overlay/s6-rc.d/user/contents.d/frontend /etc/nginx/conf.d/dev.conf \
-	&& chmod 644 /etc/logrotate.d/nginx-proxy-manager
+	&& chmod 644 /etc/logrotate.d/nginx-proxy-manager 
+#  \
+#	&& pip uninstall --yes setuptools \
+#	&& pip install --no-cache-dir "setuptools==58.0.0" \
+#	&& pip install --no-cache-dir zope
 
 VOLUME [ "/data" ]
 ENTRYPOINT [ "/init" ]
